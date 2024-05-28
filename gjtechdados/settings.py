@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--ub$aj^_@!e&7-p@2=2cub87qtfifweb69-vdcn4g9#1_czo))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gjtech-dados.onrender.com', '127.0.0.1']
+ALLOWED_HOSTS = ['project-backend-lpph.onrender.com', '127.0.0.1']
 
 
 # Application definition

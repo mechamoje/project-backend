@@ -1,0 +1,16 @@
+services:
+  - name: web
+    env: python
+    buildCommand: python manage.py collectstatic --noinput
+    startCommand: gunicorn your_project_name.wsgi:application
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        from: environment
+      - key: DATABASE_URL
+        from: environment
+webhooks:
+  - type: "init"
+    name: "start web server"
+    cmd: |
+      sed -i 's!root /app;!alias /app/static /app;!' /etc/nginx/sites-available/render
+      service nginx restart

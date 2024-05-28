@@ -16,13 +16,13 @@ def show_projects(request):
 
 @api_view(['GET'])
 def get_about_me_infos(request):
-    about_me = AboutMe.objects.all()
-    serialized = AboutMeSerializer()
+    about_me = AboutMe.objects.first()
+    serialized = AboutMeSerializer(about_me)
     return Response(serialized.data)
 
 
 @api_view(['GET'])
 def get_stacks_infos(request):
-    projects = Stacks.objects.all()
-    serialized = StacksSerializer(many=True)
+    stacks = Stacks.objects.all()
+    serialized = StacksSerializer(stacks, many=True)
     return Response(serialized.data)

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # <- Adicione esta linha
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'gjtechdados.urls'
 
@@ -123,9 +125,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_FILES = []
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    BASE_DIR / "static"  # Se tiver arquivos estáticos no código-fonte
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -137,3 +141,5 @@ CORS_ALLOW_ALL_ORIGINS = True
 MEDIA_ROOT = BASE_DIR / 'media'
 
 MEDIA_URL = '/media/'
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
